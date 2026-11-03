@@ -1,9 +1,10 @@
 {
   "name": "me.sachino-toto.physbone-modifier",
-  "displayName": "Amama PhysBone Modifier",
-  "version": "0.3.0",
-  "description": "Non-destructive PhysBone modifier for VRChat avatars.",
+  "version": "1.0.0",
   "unity": "2022.3",
+  "private": false,
+  "displayName": "Amama PhysBone Modifier",
+  "description": "Non-destructive PhysBone modifier for VRChat avatars.",
   "author": {
     "name": "Amama",
     "url": "https://sachino-toto.me"
