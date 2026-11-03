@@ -13,7 +13,7 @@ namespace Amama.PhysBoneModifier.Editor
 {
     public class PhysBoneModifierPlugin : Plugin<PhysBoneModifierPlugin>
     {
-        public override string QualifiedName => "com.amama.physbone-modifier";
+        public override string QualifiedName => "me.sachino-toto.physbone-modifier";
         public override string DisplayName => "Amama PhysBone Modifier";
 
         protected override void Configure()

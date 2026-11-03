@@ -11,7 +11,7 @@ VRChat アバターの PhysBone 設定を NDMF のビルド時に非破壊で変
 ## 使い方
 
 1. アバタープロジェクトに VRChat SDK - Avatars と NDMF を導入します。
-2. 本パッケージを `Packages/com.amama.physbone-modifier` に配置します。
+2. 本パッケージを `Packages/me.sachino-toto.physbone-modifier` に配置します。
 3. アバターまたはその子に `Amama/PhysBone Modifier` を追加します。
 4. Allow Collision / Allow Grabbing / Allow Posing を設定します。「継承／変更なし」は親の設定を引き継ぎ、親からの設定がない項目は PhysBone の元の値を保持します。Other は Self / Others を個別に指定します。
 5. 除外するオブジェクトを指定します。その子も除外されます。
