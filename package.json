@@ -1,0 +1,16 @@
+{
+  "name": "com.amama.physbone-modifier",
+  "displayName": "Amama PhysBone Modifier",
+  "version": "0.3.0",
+  "description": "Non-destructive PhysBone modifier for VRChat avatars.",
+  "unity": "2022.3",
+  "author": {
+    "name": "Amama",
+    "url": "https://sachino-toto.me"
+  },
+  "license": "MIT",
+  "vpmDependencies": {
+    "com.vrchat.avatars": ">=3.10.0",
+    "nadena.dev.ndmf": ">=1.14.8"
+  }
+}

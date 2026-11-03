@@ -1,0 +1,12 @@
+# Local editor / build output
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.user
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+artifacts/

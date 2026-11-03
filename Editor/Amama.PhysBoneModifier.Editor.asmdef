@@ -1,0 +1,22 @@
+{
+    "name": "Amama.PhysBoneModifier.Editor",
+    "rootNamespace": "Amama.PhysBoneModifier.Editor",
+    "references": [
+        "Amama.PhysBoneModifier",
+        "nadena.dev.ndmf"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "VRC.Dynamics.dll",
+        "VRC.SDK3.Dynamics.PhysBone.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
