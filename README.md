@@ -1,4 +1,4 @@
-# Amama PhysBone Modifier
+# PhysBone Modifier
 
 VRChat アバターの PhysBone 設定を NDMF のビルド時に非破壊で変更します。
 

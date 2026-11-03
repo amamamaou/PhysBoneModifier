@@ -14,7 +14,7 @@ namespace Amama.PhysBoneModifier.Editor
     public class PhysBoneModifierPlugin : Plugin<PhysBoneModifierPlugin>
     {
         public override string QualifiedName => "me.sachino-toto.physbone-modifier";
-        public override string DisplayName => "Amama PhysBone Modifier";
+        public override string DisplayName => "PhysBone Modifier";
 
         protected override void Configure()
         {
