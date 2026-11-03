@@ -1,0 +1,65 @@
+name: Release VPM package
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-vpm
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test packaging
+        run: python -m unittest discover -s .github/scripts -p 'test_*.py'
+      - name: Package tracked Unity files
+        id: package
+        run: python .github/scripts/package_release.py
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.package.outputs.tag }}
+          ASSET: ${{ steps.package.outputs.asset }}
+          PRERELEASE: ${{ steps.package.outputs.prerelease }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --json isDraft --jq '.isDraft' > "$RUNNER_TEMP/release-draft"; then
+            if [ "$(cat "$RUNNER_TEMP/release-draft")" = false ]; then
+              echo "Version already published: $TAG"
+              exit 0
+            fi
+            # Resume an interrupted draft without changing a published asset.
+            test "$(git rev-list -n 1 "$TAG")" = "$GITHUB_SHA"
+            gh release upload "$TAG" "$ASSET" --clobber
+          else
+            # An existing tag from a different commit must never be repointed.
+            if git rev-parse --verify "refs/tags/$TAG" >/dev/null 2>&1; then
+              test "$(git rev-list -n 1 "$TAG")" = "$GITHUB_SHA"
+            fi
+            gh release create "$TAG" "$ASSET" --target "$GITHUB_SHA" --title "$TAG" --generate-notes --draft
+          fi
+          gh release edit "$TAG" --draft=false --prerelease="$PRERELEASE"
+      - name: Notify VPM listing (optional)
+        env:
+          GH_TOKEN: ${{ secrets.VPM_LISTING_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "$GH_TOKEN" ]; then
+            echo 'VPM_LISTING_TOKEN is unset; the listing will refresh on its schedule.'
+            exit 0
+          fi
+          gh api --method POST repos/amamamaou/vpm.sachino-toto.me/dispatches -f event_type=vpm-release
